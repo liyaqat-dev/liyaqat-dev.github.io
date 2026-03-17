@@ -336,19 +336,22 @@
                 gsap.fromTo(bar.querySelector('.skill-bar-inner'), {width:0}, {width:bar.dataset.percent, duration:2, ease:"expo.out", scrollTrigger:{trigger:bar, start:"top 90%"}});
             });
             
-            // Logic Fix: Ensure visibility by forcing alpha/y resets
-            gsap.from(".project-card", { 
-                opacity: 0, 
-                y: 60, 
-                stagger: 0.2, 
-                duration: 1.2, 
-                ease: "power3.out",
-                scrollTrigger: { 
-                    trigger: "#projects", 
-                    start: "top 70%",
-                    toggleActions: "play none none none" 
+            // LOGIC FIX: Explicitly forcing opacity to 1 on ScrollTrigger
+            gsap.fromTo(".project-card", 
+                { opacity: 0, y: 40 }, 
+                { 
+                    opacity: 1, 
+                    y: 0, 
+                    stagger: 0.15, 
+                    duration: 1, 
+                    ease: "power2.out", 
+                    scrollTrigger: { 
+                        trigger: "#projects", 
+                        start: "top 75%",
+                        toggleActions: "play none none none" 
+                    } 
                 }
-            });
+            );
         }
 
         function toggleTheme(){ 
